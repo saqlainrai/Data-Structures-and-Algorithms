@@ -1,0 +1,12 @@
+# Ignore compiled binaries
+*.exe
+*.dll
+
+# Ignore log files
+*.log
+
+# Ignore a directory named "build"
+/.vscode/
+
+# Ignore a specific file
+config.ini
