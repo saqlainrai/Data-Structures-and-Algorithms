@@ -3,6 +3,7 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
+        self.previous = None
 
 class LinkedList:
     def __init__(self):
@@ -17,10 +18,12 @@ class LinkedList:
         while last.next:
             last = last.next
         last.next = new_node
+        new_node.previous = last
     
     def appendAtStart(self, data):
         new_node = Node(data)
         new_node.next = self.head
+        self.head.previous = new_node
         self.head = new_node
 
     def printList(self):
