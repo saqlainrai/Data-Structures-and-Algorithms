@@ -5,8 +5,10 @@
 # Ignore log files
 *.log
 
-# Ignore a directory named "build"
+# Ignore a directory named "vscode"
 /.vscode/
+build
+.pycache
 
 # Ignore a specific file
 config.ini

@@ -31,7 +31,7 @@ class Graph:
             self._edges.append(temp)
             s.adjacent.append(d)
             d.adjacent.append(s)
-            print("Edge added.")
+            # print("Edge added.")
         else:
             print("Add valid vertices first.")
     
@@ -41,7 +41,7 @@ class Graph:
                 return vertex
         return None
     
-    def dfs(self, start_vertex):                       # Depth First Search uses stack to implement
+    def dfs(self, start_vertex, find=None):                       # Depth First Search uses stack to implement
         for vertex in self._vertices:
             vertex.visited = False
         stack = [start_vertex]                # add the first vertex to the stack
@@ -49,6 +49,8 @@ class Graph:
             current_vertex = stack.pop()
             if not current_vertex.visited:  
                 print(current_vertex.data, end=' ')
+                if find and current_vertex.data == find:
+                    return
                 current_vertex.visited = True
 
                 # Add unvisited neighbors to the stack
@@ -56,7 +58,7 @@ class Graph:
                     if not n.visited:
                         stack.append(n)
 
-    def bfs(self, start_vertex):                          # Breadth First Search uses queue to implement
+    def bfs(self, start_vertex, find=None):                          # Breadth First Search uses queue to implement
         for vertex in self._vertices:
             vertex.visited = False
         queue = deque([start_vertex])
@@ -65,6 +67,8 @@ class Graph:
             current_vertex = queue.popleft()
             if not current_vertex.visited:
                 print(current_vertex.data, end=' ')
+                if find and current_vertex.data == find:
+                    return
                 current_vertex.visited = True
 
                 # Add unvisited neighbors to the queue
@@ -79,9 +83,7 @@ class Graph:
                 print(i.data, end=" ")
             print()
 
-def main():
-    g = Graph()
-    print("Graph created.")
+def init_graph(g):
     g.add_vertex(9)
     g.add_vertex(1)
     g.add_vertex(11)
@@ -101,6 +103,11 @@ def main():
     g.add_edge(1, 3, 20)
     g.add_edge(10, 1, 20)
     g.add_edge(10, 15, 20)
+
+def main():
+    g = Graph()
+    init_graph(g)
+    print("Graph created and initialized.")
     # g.show()
     print("BFS: ")
     g.bfs(g.find_vertex(9))
